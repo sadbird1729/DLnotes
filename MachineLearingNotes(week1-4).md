@@ -77,11 +77,9 @@ def computeCost(X, y, theta):
     return np.sum(inner) / (2 * len(X))
 ```
 
-梯度下降法为
-$$
-{{\theta }_{j}}:={{\theta }_{j}}-\alpha \frac{\partial }{\partial {\theta_{j}}}\frac{1}{2m}\sum\limits_{i=1}^m \left( h_{\theta}(x^{(i)})-y^{(i)} \right)^{2}={{\theta }_{j}}-a\frac{1}{m}\sum\limits_{i=1}^{m}{({{h}_{\theta }}({{x}^{(i)}})-{{y}^{(i)}})}x_{j}^{(i)}
-$$
-多项式回归：之前的线性回归拟合出来的曲线会都是直线/直面。。有时候我们需要曲线，比如二次方、三次方模型，如$${{{h}}_{\theta}}(x)={{\theta }_{0}}\text{+}{{\theta }_{1}}(size)+{{\theta}_{2}}{{(size)}^{2}}+{{\theta}_{2}}{{(size)(floor)}}$$,$$h_{\theta} \left( x \right)={\theta_{0}}{x_{0}}+{\theta_{1}}{x_{1}}+{\theta_{2}}{x_{2}}+{\theta_{2}}{x_{1}}{x_{2}}$$等。
+梯度下降法为${{\theta }_{j}}:={{\theta }_{j}}-\alpha \frac{\partial }{\partial {\theta_{j}}}\frac{1}{2m}\sum\limits_{i=1}^m \left( h_{\theta}(x^{(i)})-y^{(i)} \right)^{2}={{\theta }_{j}}-a\frac{1}{m}\sum\limits_{i=1}^{m}{({{h}_{\theta }}({{x}^{(i)}})-{{y}^{(i)}})}x_{j}^{(i)}$。
+
+多项式回归：之前的线性回归拟合出来的曲线会都是直线/直面。。有时候我们需要曲线，比如二次方、三次方模型，如${{{h}}_{\theta}}(x)={{\theta }_{0}}\text{+}{{\theta }_{1}}(size)+{{\theta}_{2}}{{(size)}^{2}}+{{\theta}_{2}}{{(size)(floor)}}$,$h_{\theta} \left( x \right)={\theta_{0}}{x_{0}}+{\theta_{1}}{x_{1}}+{\theta_{2}}{x_{2}}+{\theta_{2}}{x_{1}}{x_{2}}$等。
 
 ![3a47e15258012b06b34d4e05fb3af2cf](.pic/MachineLearingNotes(week1-4)/3a47e15258012b06b34d4e05fb3af2cf.jpg)
 
@@ -89,7 +87,7 @@ $$
 
 之前的单变量线性回归、多变量线性回归是回归类问题，下面开始说逻辑回归，二分类问题。预测变量$y$是离散的，在这里取0或者1。
 
-那么再用$$h_{\theta} \left( x \right)={\theta^{T}}X={\theta_{0}}{x_{0}}+{\theta_{1}}{x_{1}}+{\theta_{2}}{x_{2}}+...+{\theta_{n}}{x_{n}}$$作为拟合曲线就不合适了。由于$y$值为0或1，而线性回归的$h_{\theta} \left( x \right)$值范围很大，这样求误差$(h_{\theta} \left( x \right)-y)$是不太合适的，所以我们需要一个逻辑回归算法就是**S**形函数（**Sigmoid function**），公式为$g\left( z \right)=\frac{1}{1+{{e}^{-z}}}$，此时的拟合曲线为$h_\theta \left( x \right)=g\left(\theta^{T}X \right)$，即把$\theta^{T}X $的输入映射到0-1之间，作为$g\left( z \right)$的输入，这样求误差是更合理的。
+那么再用$h_{\theta} \left( x \right)={\theta^{T}}X={\theta_{0}}{x_{0}}+{\theta_{1}}{x_{1}}+{\theta_{2}}{x_{2}}+...+{\theta_{n}}{x_{n}}$作为拟合曲线就不合适了。由于$y$值为0或1，而线性回归的$h_{\theta} \left( x \right)$值范围很大，这样求误差$(h_{\theta} \left( x \right)-y)$是不太合适的，所以我们需要一个逻辑回归算法就是**S**形函数（**Sigmoid function**），公式为$g\left( z \right)=\frac{1}{1+{{e}^{-z}}}$，此时的拟合曲线为$h_\theta \left( x \right)=g\left(\theta^{T}X \right)$，即把$\theta^{T}X $的输入映射到0-1之间，作为$g\left( z \right)$的输入，这样求误差是更合理的。
 
 ![1073efb17b0d053b4f9218d4393246cc](.pic/MachineLearingNotes(week1-4)/1073efb17b0d053b4f9218d4393246cc.jpg)
 
@@ -104,7 +102,7 @@ def sigmoid(z):
 
 ![8b94e47b7630ac2b0bcb10d204513810](.pic/MachineLearingNotes(week1-4)/8b94e47b7630ac2b0bcb10d204513810.jpg)
 
-那么重新定义逻辑回归的代价函数为$$J\left( \theta  \right)=\frac{1}{m}\sum\limits_{i=1}^{m}{[-{{y}^{(i)}}\log \left( {{h}_{\theta }}\left( {{x}^{(i)}} \right) \right)-\left( 1-{{y}^{(i)}} \right)\log \left( 1-{{h}_{\theta }}\left( {{x}^{(i)}} \right) \right)]}$$。这是一个分段函数，当$y=1$时，即真值=1，我们想让预测值$${h_\theta}\left( x \right)$$趋向于1，则误差值越小，loss趋向于0，所以有下图左边，定义这部分代价函数为$$(-{{y}^{(i)}}\log \left( {{h}_{\theta }}\left( {{x}^{(i)}} \right) \right)$$。同理$y=0$如下图右边所示。
+那么重新定义逻辑回归的代价函数为$J\left( \theta  \right)=\frac{1}{m}\sum\limits_{i=1}^{m}{[-{{y}^{(i)}}\log \left( {{h}_{\theta }}\left( {{x}^{(i)}} \right) \right)-\left( 1-{{y}^{(i)}} \right)\log \left( 1-{{h}_{\theta }}\left( {{x}^{(i)}} \right) \right)]}$。这是一个分段函数，当$y=1$时，即真值=1，我们想让预测值$${h_\theta}\left( x \right)$$趋向于1，则误差值越小，loss趋向于0，所以有下图左边，定义这部分代价函数为$$(-{{y}^{(i)}}\log \left( {{h}_{\theta }}\left( {{x}^{(i)}} \right) \right)$$。同理$y=0$如下图右边所示。
 
 ![ffa56adcc217800d71afdc3e0df88378](.pic/MachineLearingNotes(week1-4)/ffa56adcc217800d71afdc3e0df88378.jpg)
 
@@ -119,7 +117,7 @@ def cost(theta, X, y, learningRate):
     return np.sum(first - second) / len(X) + reg
 ```
 
-逻辑回归的梯度下降：$$\theta_j := \theta_j - \alpha \frac{\partial}{\partial\theta_j} J(\theta)= \theta_j - \alpha \frac{1}{m}\sum\limits_{i=1}^{m}{{\left( {h_\theta}\left( \mathop{x}^{\left( i \right)} \right)-\mathop{y}^{\left( i \right)} \right)}}\mathop{x}_{j}^{(i)}$$，这里需要带入$${h_\theta}\left( {{x}^{(i)}} \right)=\frac{1}{1+{{e}^{-{\theta^T}{{x}^{(i)}}}}}$$进行推导。
+逻辑回归的梯度下降：$\theta_j := \theta_j - \alpha \frac{\partial}{\partial\theta_j} J(\theta)= \theta_j - \alpha \frac{1}{m}\sum\limits_{i=1}^{m}{{\left( {h_\theta}\left( \mathop{x}^{\left( i \right)} \right)-\mathop{y}^{\left( i \right)} \right)}}\mathop{x}_{j}^{(i)}$，这里需要带入${h_\theta}\left( {{x}^{(i)}} \right)=\frac{1}{1+{{e}^{-{\theta^T}{{x}^{(i)}}}}}$进行推导。
 
  
 
@@ -143,7 +141,7 @@ def cost(theta, X, y, learningRate):
 
 ${{\theta }^{\left( 1 \right)}}$代表从第一层映射到第二层的权重的矩阵。
 
-${{z}^{\left( 2 \right)}}$是第2层$a^{\left( 2 \right)}$的输入矩阵，${{z}^{\left( 2 \right)}}={{\theta }^{\left( 1 \right)}}x$。$${{\theta }^{\left( 1 \right)}}$$是$$3*4$$维,$$x$$是$$4*1$$维,$${{z}^{\left( 2 \right)}}$$是$$3*1$$维。
+${{z}^{\left( 2 \right)}}$是第2层$a^{\left( 2 \right)}$的输入矩阵，${{z}^{\left( 2 \right)}}={{\theta }^{\left( 1 \right)}}x$。${{\theta }^{\left( 1 \right)}}$是$3*4$维,$x$是$4*1$维,${{z}^{\left( 2 \right)}}$是$3*1$维。
 
 则${{a}^{\left( 2 \right)}}=g({{z}^{\left( 2 \right)}})$，计算后添加$a_{0}^{\left( 2 \right)}=1$.
 
@@ -151,11 +149,11 @@ ${{z}^{\left( 2 \right)}}$是第2层$a^{\left( 2 \right)}$的输入矩阵，${{z
 
 再令${{z}^{\left( 3 \right)}}={{\theta }^{\left( 2 \right)}}{{a}^{\left( 2 \right)}}$，则$h_\theta(x)={{a}^{\left( 3 \right)}}=g({{z}^{\left( 3 \right)}})$。
 
-这里$x是4*1维$，即1个数据4个特征，要对整个数据集进行计算，则$$X$$是$$4*m$$维，{{z}^{\left( 2 \right)}}={{\Theta }^{\left( 1 \right)}}\times {{X}^{T}} $$。
+这里$x$是$4*1$维，即1个数据4个特征，要对整个数据集进行计算，则$X$是$4*m$维，${{z}^{\left( 2 \right)}}={{\Theta }^{\left( 1 \right)}}\times {{X}^{T}} $。
 
 ![3](.pic/MachineLearingNotes(week1-4)/3.png)
 
-对神经网络的理解：假如遮住第1层，只看第2层和第3层，这就像逻辑回归是一样的，以$a_0, a_1, a_2, a_3$作为输入，按照逻辑回归方式输出$h_\theta(x)$，只是把逻辑回归中的输入向量$\left[ x_1\sim {x_3} \right]$换成了中间层的$\left[ a_1^{(2)}\sim a_3^{(2)} \right]$，即$$h_\theta(x)=g\left( \Theta_0^{\left( 2 \right)}a_0^{\left( 2 \right)}+\Theta_1^{\left( 2 \right)}a_1^{\left( 2 \right)}+\Theta_{2}^{\left( 2 \right)}a_{2}^{\left( 2 \right)}+\Theta_{3}^{\left( 2 \right)}a_{3}^{\left( 2 \right)} \right)$$。
+对神经网络的理解：假如遮住第1层，只看第2层和第3层，这就像逻辑回归是一样的，以$a_0, a_1, a_2, a_3$作为输入，按照逻辑回归方式输出$h_\theta(x)$，只是把逻辑回归中的输入向量$\left[ x_1\sim {x_3} \right]$换成了中间层的$\left[ a_1^{(2)}\sim a_3^{(2)} \right]$，即$h_\theta(x)=g\left( \Theta_0^{\left( 2 \right)}a_0^{\left( 2 \right)}+\Theta_1^{\left( 2 \right)}a_1^{\left( 2 \right)}+\Theta_{2}^{\left( 2 \right)}a_{2}^{\left( 2 \right)}+\Theta_{3}^{\left( 2 \right)}a_{3}^{\left( 2 \right)} \right)$。
 
 我们可以把$a_0, a_1, a_2, a_3$看作比$x_0, x_1, x_2, x_3$更厉害的输入，更高级的特征，$a_0, a_1, a_2, a_3$
 
