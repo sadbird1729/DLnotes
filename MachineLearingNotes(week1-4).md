@@ -77,9 +77,7 @@ def computeCost(X, y, theta):
     return np.sum(inner) / (2 * len(X))
 ```
 
-梯度下降法为${\theta_{j}}:={\theta_{j}}-\alpha \frac{\partial }{\partial {\theta_{j}}}J\left( \theta  \right)$$={\theta_{j}}-a\frac{1}{m}\sum\limits_{i=1}^{m}{\left( \left({{h}_{\theta }}({{x}_{j}^{(i)}})-{{y}^{(i)}} \right)\cdot {{x}_{j}^{(i)}} \right)}$
-
-![6](.pic/MachineLearingNotes(week1-4)/6.png)
+梯度下降法为$\theta_j:=\theta_j-\alpha\frac{\partial}{\partial\theta_j} J(\theta)=\theta_j-\alpha\frac{1}{m}\sum\limits_{i=1}^{m}{{\left({h_\theta}\left( \mathop{x}^{\left(i\right)}\right)-\mathop{y}^{\left(i\right)} \right)}}\mathop{x}^{(i)}$
 
 多项式回归：之前的线性回归拟合出来的曲线会都是直线/直面。。有时候我们需要曲线，比如二次方、三次方模型，如$h_{\theta}\left( x \right)={\theta_{0}}+{\theta_{1}}{x_{1}}+{\theta_{2}}{x_{2}^2}$等。
 
@@ -104,13 +102,11 @@ def sigmoid(z):
 
 ![8b94e47b7630ac2b0bcb10d204513810](.pic/MachineLearingNotes(week1-4)/8b94e47b7630ac2b0bcb10d204513810.jpg)
 
-那么重新定义逻辑回归的代价函数为$J\left(\theta\right)=\frac{1}{m}\sum\limits_{i=1}^{m}{[-{{y}^{(i)}}\log\left({{h}_{\theta}}\left({{x}^{(i)}}\right)\right)-\left(1-{{y}^{(i)}}\right)\log\left(1-{{h}_{\theta}}\left({{x}^{(i)}}\right)\right)]}$
-
-![8](.pic/MachineLearingNotes(week1-4)/8.png)
+那么重新定义逻辑回归的代价函数为$J\left( \theta  \right)=-\frac{1}{m}\sum\limits_{i=1}^{m}{[{{y}^{(i)}}\log \left( {h_\theta}\left( {{x}^{(i)}} \right) \right)+\left( 1-{{y}^{(i)}} \right)\log \left( 1-{h_\theta}\left( {{x}^{(i)}} \right) \right)]}$
 
 
 
- 这是一个分段函数，当$y=1$时，即真值=1，我们想让预测值$${h_\theta}\left( x \right)$$趋向于1，则误差值越小，loss趋向于0，所以有下图左边，定义这部分代价函数为$(-{{y}^{(i)}}\log \left( {{h}_{\theta }}\left( {{x}^{(i)}} \right) \right)$。同理$y=0$如下图右边所示。
+ 这是一个分段函数，当$y=1$时，即真值=1，我们想让预测值${h_\theta}\left( x \right)$趋向于1，则误差值越小，loss趋向于0，所以有下图左边，定义这部分代价函数为$(-{{y}^{(i)}}\log \left( {{h}_{\theta }}\left( {{x}^{(i)}} \right) \right)$。同理$y=0$如下图右边所示。
 
 ![ffa56adcc217800d71afdc3e0df88378](.pic/MachineLearingNotes(week1-4)/ffa56adcc217800d71afdc3e0df88378.jpg)
 
@@ -127,9 +123,7 @@ def cost(theta, X, y, learningRate):
 
 逻辑回归的梯度下降：$\theta_j:=\theta_j-\alpha\frac{\partial}{\partial\theta_j} J(\theta)=\theta_j-\alpha\frac{1}{m}\sum\limits_{i=1}^{m}{{\left({h_\theta}\left( \mathop{x}^{\left(i\right)}\right)-\mathop{y}^{\left(i\right)} \right)}}\mathop{x}^{(i)}$ ，这里需要带入${h_\theta}\left({{x}^{(i)}}\right)=\frac{1}{1+{{e}^{-{\theta^T}{{x}^{(i)}}}}}$进行推导。
 
-![0](.pic/MachineLearingNotes(week1-4)/0.png)
 
-![10](.pic/MachineLearingNotes(week1-4)/10.png)
 
 ## 神经网络
 
