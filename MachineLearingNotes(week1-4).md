@@ -77,9 +77,9 @@ def computeCost(X, y, theta):
     return np.sum(inner) / (2 * len(X))
 ```
 
-梯度下降法为${{\theta }_{j}}:={{\theta }_{j}}-\alpha \frac{\partial }{\partial {\theta_{j}}}\frac{1}{2m}\sum\limits_{i=1}^m \left( h_{\theta}(x^{(i)})-y^{(i)} \right)^{2}={{\theta }_{j}}-a\frac{1}{m}\sum\limits_{i=1}^{m}{({{h}_{\theta }}({{x}^{(i)}})-{{y}^{(i)}})}x_{j}^{(i)}$。
+梯度下降法为$${{\theta }_{j}}:={{\theta }_{j}}-\alpha \frac{\partial }{\partial {\theta_{j}}}\frac{1}{2m}\sum\limits_{i=1}^m \left( h_{\theta}(x^{(i)})-y^{(i)} \right)^{2}={{\theta }_{j}}-a\frac{1}{m}\sum\limits_{i=1}^{m}{({{h}_{\theta }}({{x}^{(i)}})-{{y}^{(i)}})}x_{j}^{(i)}$$。
 
-多项式回归：之前的线性回归拟合出来的曲线会都是直线/直面。。有时候我们需要曲线，比如二次方、三次方模型，如${{{h}}_{\theta}}(x)={{\theta }_{0}}\text{+}{{\theta }_{1}}(size)+{{\theta}_{2}}{{(size)}^{2}}+{{\theta}_{2}}{{(size)(floor)}}$，等$h_{\theta} \left( x \right)={\theta_{0}}{x_{0}}+{\theta_{1}}{x_{1}}+{\theta_{2}}{x_{2}}+{\theta_{2}}{x_{1}}{x_{2}}$。
+多项式回归：之前的线性回归拟合出来的曲线会都是直线/直面。。有时候我们需要曲线，比如二次方、三次方模型，如$${{{h}}_{\theta}}(x)={{\theta }_{0}}\text{+}{{\theta }_{1}}(size)+{{\theta}_{2}}{{(size)}^{2}}+{{\theta}_{2}}{{(size)(floor)}}$$，等$$h_{\theta} \left( x \right)={\theta_{0}}{x_{0}}+{\theta_{1}}{x_{1}}+{\theta_{2}}{x_{2}}+{\theta_{2}}{x_{1}}{x_{2}}$$。
 
 ![3a47e15258012b06b34d4e05fb3af2cf](.pic/MachineLearingNotes(week1-4)/3a47e15258012b06b34d4e05fb3af2cf.jpg)
 
@@ -102,7 +102,7 @@ def sigmoid(z):
 
 ![8b94e47b7630ac2b0bcb10d204513810](.pic/MachineLearingNotes(week1-4)/8b94e47b7630ac2b0bcb10d204513810.jpg)
 
-那么重新定义逻辑回归的代价函数为$J\left( \theta  \right)=\frac{1}{m}\sum\limits_{i=1}^{m}{[-{{y}^{(i)}}\log \left( {{h}_{\theta }}\left( {{x}^{(i)}} \right) \right)-\left( 1-{{y}^{(i)}} \right)\log \left( 1-{{h}_{\theta }}\left( {{x}^{(i)}} \right) \right)]}$。这是一个分段函数，当$y=1$时，即真值=1，我们想让预测值${h_\theta}\left( x \right)$趋向于1，则误差值越小，loss趋向于0，所以有下图左边，定义这部分代价函数为$(-{{y}^{(i)}}\log \left( {{h}_{\theta }}\left( {{x}^{(i)}} \right) \right)$。同理$y=0$如下图右边所示。
+那么重新定义逻辑回归的代价函数为$$J\left( \theta  \right)=\frac{1}{m}\sum\limits_{i=1}^{m}{[-{{y}^{(i)}}\log \left( {{h}_{\theta }}\left( {{x}^{(i)}} \right) \right)-\left( 1-{{y}^{(i)}} \right)\log \left( 1-{{h}_{\theta }}\left( {{x}^{(i)}} \right) \right)]}$$。这是一个分段函数，当$y=1$时，即真值=1，我们想让预测值$${h_\theta}\left( x \right)$$趋向于1，则误差值越小，loss趋向于0，所以有下图左边，定义这部分代价函数为$$(-{{y}^{(i)}}\log \left( {{h}_{\theta }}\left( {{x}^{(i)}} \right) \right)$$。同理$y=0$如下图右边所示。
 
 ![ffa56adcc217800d71afdc3e0df88378](.pic/MachineLearingNotes(week1-4)/ffa56adcc217800d71afdc3e0df88378.jpg)
 
@@ -117,79 +117,9 @@ def cost(theta, X, y, learningRate):
     return np.sum(first - second) / len(X) + reg
 ```
 
-逻辑回归的梯度下降：$\theta_j := \theta_j - \alpha \frac{\partial}{\partial\theta_j} J(\theta)= \theta_j - \alpha \frac{1}{m}\sum\limits_{i=1}^{m}{{\left( {h_\theta}\left( \mathop{x}^{\left( i \right)} \right)-\mathop{y}^{\left( i \right)} \right)}}\mathop{x}_{j}^{(i)}$，这里需要带入${h_\theta}\left( {{x}^{(i)}} \right)=\frac{1}{1+{{e}^{-{\theta^T}{{x}^{(i)}}}}}$进行推导。
+逻辑回归的梯度下降：$$\theta_j := \theta_j - \alpha \frac{\partial}{\partial\theta_j} J(\theta)= \theta_j - \alpha \frac{1}{m}\sum\limits_{i=1}^{m}{{\left( {h_\theta}\left( \mathop{x}^{\left( i \right)} \right)-\mathop{y}^{\left( i \right)} \right)}}\mathop{x}_{j}^{(i)}$$，这里需要带入$${h_\theta}\left( {{x}^{(i)}} \right)=\frac{1}{1+{{e}^{-{\theta^T}{{x}^{(i)}}}}}$$进行推导。
 
- <!--**向量化梯度：**-->
-
-<!--没正则化的时候，逻辑回归的代价是一个向量，第j个元素定义如下：-->
-$$
-\frac{\partial J}{\partial {\theta }_{j}}=\frac{1}{m}\sum\limits_{i=1}^{m}\left({({{h}_{\theta }}( {{x}^{(i)}})-{{y}^{(i)}})x_j^{(i)}} \right)
-$$
-<!--想要正则化它，我们先把他每一行都写出来-->
-
-<!--![Image Name](.pic/MachineLearingNotes(week1-4)/pzg55zireb.png)-->
-
-
-$$
-=\frac{1}{m}\sum\limits_{i=1}^{m}\left({({{h}_{\theta }}( {{x}^{(i)}})-{{y}^{(i)}})x^{(i)}} \right)
-$$
-
-$$
-=\frac{1}{m}X^T(h_\theta(x)-y)
-$$
-
-<!--其中-->
-
-<!--![Image Name](.pic/MachineLearingNotes(week1-4)/960.jpg)-->
-
-
-
-<!--记住，$$ x^{(i)}$$ 是一个向量，但$$(h_\theta(x^{(i)})-y^{(i)})$$是一个数字-->
-
-<!--要理解前面式子的最后一步，我们令$$ \beta_i=(h_\theta(x^{(i)})-y^{(i)})$$。于是我们可以得出如下等式-->
-
-<!--![Image Name](.pic/MachineLearingNotes(week1-4)/1.jpg)-->
-
-<!--$$\sum\limits_i\beta_ix^{(i)}$$是$$n*1$$的向量，与一开始等式左边$$\frac{\partial J}{\partial {\theta }_{n}}$$的$$n*1$$向量对应，$$X^T$$后为$$n*m$$，$$\beta_m$$的列向量是$$m*1$$,二者相乘之后是$$n*1$$-->
-
-<!--**向量化正则化逻辑回归：**-->
-
-<!--梯度更新公式如下：-->
-$$
-{{\theta }_{0}}:={{\theta }_{0}}-a\frac{1}{m}\sum\limits_{i=1}^{m}{({{h}_{\theta }}( {{x}^{(i)}} )-{{y}^{(i)}})x_{_{0}}^{(i)}}
-$$
-
-$$
-{{\theta }_{j}}:={{\theta }_{j}}-a(\frac{1}{m}\sum\limits_{i=1}^{m}{({{h}_{\theta }}( {{x}^{(i)}} )-{{y}^{(i)}})x_{j}^{(i)}}+\frac{\lambda }{m}{{\theta }_{j}})
-$$
-
-<!--向量化后的梯度更新公式如下：-->
-$$
-{{\theta }_{0}}:={{\theta }_{0}}-a\frac{1}{m}(h_\theta(x)-y)\cdot x_{_{0}}
-$$
-
-$$
-{{\theta }_{j}}:={{\theta }_{j}}-a(\frac{1}{m}X^T(h_\theta(x)-y)+\frac{\lambda }{m}{{\theta }_{j}})
-$$
-
-```
-def gradient(theta, X, y, learningRate):
-    theta = np.matrix(theta)
-    X = np.matrix(X)
-    y = np.matrix(y)
-    
-    parameters = int(theta.ravel().shape[1])
-    error = sigmoid(X * theta.T) - y
-    
-    grad = ((X.T * error) / len(X)).T + ((learningRate / len(X)) * theta)
-    
-    # intercept gradient is not regularized
-    grad[0, 0] = np.sum(np.multiply(error, X[:,0])) / len(X)
-    
-    return np.array(grad).ravel()
-```
-
-
+ 
 
 ## 神经网络
 
@@ -211,7 +141,7 @@ def gradient(theta, X, y, learningRate):
 
 ${{\theta }^{\left( 1 \right)}}$代表从第一层映射到第二层的权重的矩阵。
 
-${{z}^{\left( 2 \right)}}$是第2层$a^{\left( 2 \right)}$的输入矩阵，${{z}^{\left( 2 \right)}}={{\theta }^{\left( 1 \right)}}x$。${{\theta }^{\left( 1 \right)}}是3*4维,x是4*1维,{{z}^{\left( 2 \right)}}是3*1维$。
+${{z}^{\left( 2 \right)}}$是第2层$a^{\left( 2 \right)}$的输入矩阵，${{z}^{\left( 2 \right)}}={{\theta }^{\left( 1 \right)}}x$。$${{\theta }^{\left( 1 \right)}}是3*4维,x是4*1维,{{z}^{\left( 2 \right)}}是3*1维$$。
 
 则${{a}^{\left( 2 \right)}}=g({{z}^{\left( 2 \right)}})$，计算后添加$a_{0}^{\left( 2 \right)}=1$.
 
@@ -219,11 +149,11 @@ ${{z}^{\left( 2 \right)}}$是第2层$a^{\left( 2 \right)}$的输入矩阵，${{z
 
 再令${{z}^{\left( 3 \right)}}={{\theta }^{\left( 2 \right)}}{{a}^{\left( 2 \right)}}$，则$h_\theta(x)={{a}^{\left( 3 \right)}}=g({{z}^{\left( 3 \right)}})$。
 
-这里$x是4*1维$，即1个数据4个特征，要对整个数据集进行计算，则$X是4*m维，{{z}^{\left( 2 \right)}}={{\Theta }^{\left( 1 \right)}}\times {{X}^{T}} $。
+这里$x是4*1维$，即1个数据4个特征，要对整个数据集进行计算，则$$X是4*m维，{{z}^{\left( 2 \right)}}={{\Theta }^{\left( 1 \right)}}\times {{X}^{T}} $$。
 
 ![3](.pic/MachineLearingNotes(week1-4)/3.png)
 
-对神经网络的理解：假如遮住第1层，只看第2层和第3层，这就像逻辑回归是一样的，以$a_0, a_1, a_2, a_3$作为输入，按照逻辑回归方式输出$h_\theta(x)$，只是把逻辑回归中的输入向量$\left[ x_1\sim {x_3} \right]$换成了中间层的$\left[ a_1^{(2)}\sim a_3^{(2)} \right]$，即$h_\theta(x)=g\left( \Theta_0^{\left( 2 \right)}a_0^{\left( 2 \right)}+\Theta_1^{\left( 2 \right)}a_1^{\left( 2 \right)}+\Theta_{2}^{\left( 2 \right)}a_{2}^{\left( 2 \right)}+\Theta_{3}^{\left( 2 \right)}a_{3}^{\left( 2 \right)} \right)$。
+对神经网络的理解：假如遮住第1层，只看第2层和第3层，这就像逻辑回归是一样的，以$a_0, a_1, a_2, a_3$作为输入，按照逻辑回归方式输出$h_\theta(x)$，只是把逻辑回归中的输入向量$\left[ x_1\sim {x_3} \right]$换成了中间层的$\left[ a_1^{(2)}\sim a_3^{(2)} \right]$，即$$h_\theta(x)=g\left( \Theta_0^{\left( 2 \right)}a_0^{\left( 2 \right)}+\Theta_1^{\left( 2 \right)}a_1^{\left( 2 \right)}+\Theta_{2}^{\left( 2 \right)}a_{2}^{\left( 2 \right)}+\Theta_{3}^{\left( 2 \right)}a_{3}^{\left( 2 \right)} \right)$$。
 
 我们可以把$a_0, a_1, a_2, a_3$看作比$x_0, x_1, x_2, x_3$更厉害的输入，更高级的特征，$a_0, a_1, a_2, a_3$
 
