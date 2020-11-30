@@ -77,11 +77,9 @@ def computeCost(X, y, theta):
     return np.sum(inner) / (2 * len(X))
 ```
 
-梯度下降法为${{\theta}_{j}}={{\theta }_{j}}-\alpha\frac{\partial}{\partial {\theta_{j}}}\frac{1}{2m}\sum\limits_{i=1}^m\left(h_{\theta}(x^{(i)})-y^{(i)} \right)^{2}$$={{\theta}_{j}}-\alpha\frac{1}{m}\sum\limits_{i=1}^{m}{({{h}_{\theta}}({{x}^{(i)}})-{{y}^{(i)}})}x_{j}^{(i)}$。
+梯度下降法为${{\theta}_{j}}={{\theta }_{j}}-\alpha\frac{\partial}{\partial {\theta_{j}}}\frac{1}{2m}\sum\limits_{i=1}^m\left(h_{\theta}(x^{(i)})-y^{(i)} \right)^{2}$。
 
-${{\theta}_{j}}={{\theta}_{j}}-\alpha\frac{\partial }{\partial {{\theta }_{j}}}\frac{1}{2m}{{\sum\limits_{i=1}^{m}{\left( {{h}_{\theta }}({{x}^{(i)}})-{{y}^{(i)}} \right)}}^{2}}$
-
-
+${\theta_{1}}:={\theta_{1}}-a\frac{1}{m}\sum\limits_{i=1}^{m}{\left( \left({{h}_{\theta }}({{x}^{(i)}})-{{y}^{(i)}} \right)\cdot {{x}^{(i)}} \right)}$
 
 多项式回归：之前的线性回归拟合出来的曲线会都是直线/直面。。有时候我们需要曲线，比如二次方、三次方模型，如$h_{\theta}\left( x \right)={\theta_{0}}+{\theta_{1}}{x_{1}}+{\theta_{2}}{x_{2}^2}$等。
 
