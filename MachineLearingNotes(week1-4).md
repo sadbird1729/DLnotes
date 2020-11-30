@@ -77,9 +77,9 @@ def computeCost(X, y, theta):
     return np.sum(inner) / (2 * len(X))
 ```
 
-梯度下降法为${{\theta}_{j}}={{\theta }_{j}}-\alpha\frac{\partial}{\partial {\theta_{j}}}\frac{1}{2m}\sum\limits_{i=1}^m\left(h_{\theta}(x^{(i)})-y^{(i)} \right)^{2}={{\theta}_{j}}-\alpha\frac{1}{m}\sum\limits_{i=1}^{m}{({{h}_{\theta}}({{x}^{(i)}})-{{y}^{(i)}})}x_{j}^{(i)}$。
+梯度下降法为${{\theta}_{j}}={{\theta }_{j}}-\alpha\frac{\partial}{\partial {\theta_{j}}}\frac{1}{2m}\sum\limits_{i=1}^m\left(h_{\theta}(x^{(i)})-y^{(i)} \right)^{2}$$={{\theta}_{j}}-\alpha\frac{1}{m}\sum\limits_{i=1}^{m}{({{h}_{\theta}}({{x}^{(i)}})-{{y}^{(i)}})}x_{j}^{(i)}$。
 
-多项式回归：之前的线性回归拟合出来的曲线会都是直线/直面。。有时候我们需要曲线，比如二次方、三次方模型，如${{{h}}_{\theta}}(x)={{\theta}_{0}}+{{\theta}_{1}}(size)+{{\theta}_{2}}{{(size)}^{2}}+{{\theta}_{2}}{{(size)(floor)}}$，${{{h}}_{\theta}}(x)={{\theta}_{0}}+{{\theta}_{1}}(x_1)+{{\theta}_{2}}{{(x_2)}^{2}}+{{\theta}_{2}}{{(x_1)(x_2)}}$等。
+多项式回归：之前的线性回归拟合出来的曲线会都是直线/直面。。有时候我们需要曲线，比如二次方、三次方模型，如${{{h}}_{\theta}}(x)={{\theta}_{0}}+{{\theta}_{1}}(size)+$${{\theta}_{2}}{{(size)}^{2}}+{{\theta}_{2}}{{(size)(floor)}}$，${{{h}}_{\theta}}(x)={{\theta}_{0}}+{{\theta}_{1}}(x_1)+$${{\theta}_{2}}{{(x_2)}^{2}}+{{\theta}_{2}}{{(x_1)(x_2)}}$等。
 
 ![3a47e15258012b06b34d4e05fb3af2cf](.pic/MachineLearingNotes(week1-4)/3a47e15258012b06b34d4e05fb3af2cf.jpg)
 
@@ -102,7 +102,11 @@ def sigmoid(z):
 
 ![8b94e47b7630ac2b0bcb10d204513810](.pic/MachineLearingNotes(week1-4)/8b94e47b7630ac2b0bcb10d204513810.jpg)
 
-那么重新定义逻辑回归的代价函数为$J\left(\theta\right)=\frac{1}{m}\sum\limits_{i=1}^{m}{[-{{y}^{(i)}}\log\left({{h}_{\theta}}\left({{x}^{(i)}}\right)\right)-\left(1-{{y}^{(i)}}\right)\log\left(1-{{h}_{\theta}}\left({{x}^{(i)}}\right)\right)]}$ 。这是一个分段函数，当$y=1$时，即真值=1，我们想让预测值$${h_\theta}\left( x \right)$$趋向于1，则误差值越小，loss趋向于0，所以有下图左边，定义这部分代价函数为$(-{{y}^{(i)}}\log \left( {{h}_{\theta }}\left( {{x}^{(i)}} \right) \right)$。同理$y=0$如下图右边所示。
+那么重新定义逻辑回归的代价函数为
+$$
+J\left(\theta\right)=\frac{1}{m}\sum\limits_{i=1}^{m}{[-{{y}^{(i)}}\log\left({{h}_{\theta}}\left({{x}^{(i)}}\right)\right)-\left(1-{{y}^{(i)}}\right)\log\left(1-{{h}_{\theta}}\left({{x}^{(i)}}\right)\right)]}
+$$
+ 这是一个分段函数，当$y=1$时，即真值=1，我们想让预测值$${h_\theta}\left( x \right)$$趋向于1，则误差值越小，loss趋向于0，所以有下图左边，定义这部分代价函数为$(-{{y}^{(i)}}\log \left( {{h}_{\theta }}\left( {{x}^{(i)}} \right) \right)$。同理$y=0$如下图右边所示。
 
 ![ffa56adcc217800d71afdc3e0df88378](.pic/MachineLearingNotes(week1-4)/ffa56adcc217800d71afdc3e0df88378.jpg)
 
@@ -117,7 +121,7 @@ def cost(theta, X, y, learningRate):
     return np.sum(first - second) / len(X) + reg
 ```
 
-逻辑回归的梯度下降：$\theta_j:=\theta_j-\alpha\frac{\partial}{\partial\theta_j} J(\theta)=\theta_j-\alpha\frac{1}{m}\sum\limits_{i=1}^{m}{{\left({h_\theta}\left( \mathop{x}^{\left(i\right)}\right)-\mathop{y}^{\left(i\right)} \right)}}\mathop{x}_{j}^{(i)}$ ，这里需要带入${h_\theta}\left({{x}^{(i)}}\right)=\frac{1}{1+{{e}^{-{\theta^T}{{x}^{(i)}}}}}$进行推导。
+逻辑回归的梯度下降：$\theta_j:=\theta_j-\alpha\frac{\partial}{\partial\theta_j} J(\theta)$$=\theta_j-\alpha\frac{1}{m}$$\sum\limits_{i=1}^{m}{{\left({h_\theta}\left( \mathop{x}^{\left(i\right)}\right)-\mathop{y}^{\left(i\right)} \right)}}\mathop{x}_{j}^{(i)}$ ，这里需要带入${h_\theta}\left({{x}^{(i)}}\right)=\frac{1}{1+{{e}^{-{\theta^T}{{x}^{(i)}}}}}$进行推导。
 
  
 
