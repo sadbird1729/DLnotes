@@ -141,7 +141,7 @@ def cost(theta, X, y, learningRate):
 
 ${{\theta }^{\left( 1 \right)}}$代表从第一层映射到第二层的权重的矩阵。
 
-${{z}^{\left( 2 \right)}}$是第2层$a^{\left( 2 \right)}$的输入矩阵，${{z}^{\left( 2 \right)}}={{\theta }^{\left( 1 \right)}}x$。${{\theta }^{\left( 1 \right)}}$是$3*4$维,$x$是$4*1$维,${{z}^{\left( 2 \right)}}$是$3*1$维。
+${{z}^{\left( 2 \right)}}$是第2层$a^{\left( 2 \right)}$的输入矩阵，${{z}^{\left( 2 \right)}}={{\theta }^{\left( 1 \right)}}x$。${{\theta }^{\left( 1 \right)}}$是$3\times4$维,$x$是$4\times1$维,${{z}^{\left( 2 \right)}}$是$3\times1$维。
 
 则${{a}^{\left( 2 \right)}}=g({{z}^{\left( 2 \right)}})$，计算后添加$a_{0}^{\left( 2 \right)}=1$.
 
@@ -149,7 +149,7 @@ ${{z}^{\left( 2 \right)}}$是第2层$a^{\left( 2 \right)}$的输入矩阵，${{z
 
 再令${{z}^{\left( 3 \right)}}={{\theta }^{\left( 2 \right)}}{{a}^{\left( 2 \right)}}$，则$h_\theta(x)={{a}^{\left( 3 \right)}}=g({{z}^{\left( 3 \right)}})$。
 
-这里$x$是$4*1$维，即1个数据4个特征，要对整个数据集进行计算，则$X$是$4*m$维，${{z}^{\left( 2 \right)}}={{\Theta}^{\left(1\right)}}\times{{X}^{T}}$
+这里$x$是$4\times1$维，即1个数据4个特征，要对整个数据集进行计算，则$X$是$4\times m$维，${{z}^{\left( 2 \right)}}={{\Theta}^{\left(1\right)}}\times{{X}^{T}}$
 
 ![3](.pic/MachineLearingNotes(week1-4)/3.png)
 
