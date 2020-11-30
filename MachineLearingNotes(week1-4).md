@@ -69,7 +69,7 @@ ${x}^{(2)}\text{=}\begin{bmatrix} 1416\\\ 3\\\ 2\\\ 40 \end{bmatrix}$
 
 此时$h_{\theta} \left( x \right)={\theta^{T}}X$，$X$的维度是$m*(n+1)$，模型参数$\theta$是$n+1$维的向量。
 
-多变量线性回归的代价函数是$J\left( {\theta_{0}},{\theta_{1}}...{\theta_{n}} \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( h_{\theta} \left({x}^{\left( i \right)} \right)-{y}^{\left( i \right)} \right)}^{2}}}$，其中$h_{\theta}\left( x \right)=\theta^{T}X={\theta_{0}}+{\theta_{1}}{x_{1}}+{\theta_{2}}{x_{2}}+...+{\theta_{n}}{x_{n}}$。
+多变量线性回归的代价函数是$$J\left( {\theta_{0}},{\theta_{1}}...{\theta_{n}} \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( h_{\theta} \left({x}^{\left( i \right)} \right)-{y}^{\left( i \right)} \right)}^{2}}}$$，其中$$h_{\theta}\left( x \right)=\theta^{T}X={\theta_{0}}+{\theta_{1}}{x_{1}}+{\theta_{2}}{x_{2}}+...+{\theta_{n}}{x_{n}}$$。
 
 ```
 def computeCost(X, y, theta):
@@ -79,7 +79,7 @@ def computeCost(X, y, theta):
 
 梯度下降法为${{\theta }_{j}}:={{\theta }_{j}}-\alpha \frac{\partial }{\partial {\theta_{j}}}\frac{1}{2m}\sum\limits_{i=1}^m \left( h_{\theta}(x^{(i)})-y^{(i)} \right)^{2}={{\theta }_{j}}-a\frac{1}{m}\sum\limits_{i=1}^{m}{({{h}_{\theta }}({{x}^{(i)}})-{{y}^{(i)}})}x_{j}^{(i)}$。
 
-多项式回归：之前的线性回归拟合出来的曲线会都是直线/直面。。有时候我们需要曲线，比如二次方、三次方模型，如${{{h}}_{\theta}}(x)={{\theta }_{0}}\text{+}{{\theta }_{1}}(size)+{{\theta}_{2}}{{(size)}^{2}}+{{\theta}_{2}}{{(size)(floor)}}$,$h_{\theta} \left( x \right)={\theta_{0}}{x_{0}}+{\theta_{1}}{x_{1}}+{\theta_{2}}{x_{2}}+{\theta_{2}}{x_{1}}{x_{2}}$等。
+多项式回归：之前的线性回归拟合出来的曲线会都是直线/直面。。有时候我们需要曲线，比如二次方、三次方模型，如$${{{h}}_{\theta}}(x)={{\theta }_{0}}\text{+}{{\theta }_{1}}(size)+{{\theta}_{2}}{{(size)}^{2}}+{{\theta}_{2}}{{(size)(floor)}}$$,$$h_{\theta} \left( x \right)={\theta_{0}}{x_{0}}+{\theta_{1}}{x_{1}}+{\theta_{2}}{x_{2}}+{\theta_{2}}{x_{1}}{x_{2}}$$等。
 
 ![3a47e15258012b06b34d4e05fb3af2cf](.pic/MachineLearingNotes(week1-4)/3a47e15258012b06b34d4e05fb3af2cf.jpg)
 
