@@ -77,17 +77,19 @@ def computeCost(X, y, theta):
     return np.sum(inner) / (2 * len(X))
 ```
 
-梯度下降法为$${{\theta }_{j}}:={{\theta }_{j}}-\alpha \frac{\partial }{\partial {\theta_{j}}}\frac{1}{2m}\sum\limits_{i=1}^m \left( h_{\theta}(x^{(i)})-y^{(i)} \right)^{2}={{\theta }_{j}}-a\frac{1}{m}\sum\limits_{i=1}^{m}{({{h}_{\theta }}({{x}^{(i)}})-{{y}^{(i)}})}x_{j}^{(i)}$$。
-
-多项式回归：之前的线性回归拟合出来的曲线会都是直线/直面。。有时候我们需要曲线，比如二次方、三次方模型，如$${{{h}}_{\theta}}(x)={{\theta }_{0}}\text{+}{{\theta }_{1}}(size)+{{\theta}_{2}}{{(size)}^{2}}+{{\theta}_{2}}{{(size)(floor)}}$$，等$$h_{\theta} \left( x \right)={\theta_{0}}{x_{0}}+{\theta_{1}}{x_{1}}+{\theta_{2}}{x_{2}}+{\theta_{2}}{x_{1}}{x_{2}}$$。
+梯度下降法为
+$$
+{{\theta }_{j}}:={{\theta }_{j}}-\alpha \frac{\partial }{\partial {\theta_{j}}}\frac{1}{2m}\sum\limits_{i=1}^m \left( h_{\theta}(x^{(i)})-y^{(i)} \right)^{2}={{\theta }_{j}}-a\frac{1}{m}\sum\limits_{i=1}^{m}{({{h}_{\theta }}({{x}^{(i)}})-{{y}^{(i)}})}x_{j}^{(i)}
+$$
+多项式回归：之前的线性回归拟合出来的曲线会都是直线/直面。。有时候我们需要曲线，比如二次方、三次方模型，如$${{{h}}_{\theta}}(x)={{\theta }_{0}}\text{+}{{\theta }_{1}}(size)+{{\theta}_{2}}{{(size)}^{2}}+{{\theta}_{2}}{{(size)(floor)}}$$,$$h_{\theta} \left( x \right)={\theta_{0}}{x_{0}}+{\theta_{1}}{x_{1}}+{\theta_{2}}{x_{2}}+{\theta_{2}}{x_{1}}{x_{2}}$$等。
 
 ![3a47e15258012b06b34d4e05fb3af2cf](.pic/MachineLearingNotes(week1-4)/3a47e15258012b06b34d4e05fb3af2cf.jpg)
 
 ## 逻辑回归
 
-之前的单变量线性回归、多变量线性回归是回归类问题，下面开始说逻辑回归，二分类问题。预测变量$y$是离散的，在这里取0或者1.
+之前的单变量线性回归、多变量线性回归是回归类问题，下面开始说逻辑回归，二分类问题。预测变量$y$是离散的，在这里取0或者1。
 
-那么再用$h_{\theta} \left( x \right)={\theta^{T}}X={\theta_{0}}{x_{0}}+{\theta_{1}}{x_{1}}+{\theta_{2}}{x_{2}}+...+{\theta_{n}}{x_{n}}$作为拟合曲线就不合适了。由于$y$值为0或1，而线性回归的$h_{\theta} \left( x \right)$值范围很大，这样求误差$(h_{\theta} \left( x \right)-y)$是不太合适的，所以我们需要一个逻辑回归算法就是**S**形函数（**Sigmoid function**），公式为$g\left( z \right)=\frac{1}{1+{{e}^{-z}}}$，此时的拟合曲线为$h_\theta \left( x \right)=g\left(\theta^{T}X \right)$，即把$\theta^{T}X $的输入映射到0-1之间，作为$g\left( z \right)$的输入，这样求误差是更合理的。
+那么再用$$h_{\theta} \left( x \right)={\theta^{T}}X={\theta_{0}}{x_{0}}+{\theta_{1}}{x_{1}}+{\theta_{2}}{x_{2}}+...+{\theta_{n}}{x_{n}}$$作为拟合曲线就不合适了。由于$y$值为0或1，而线性回归的$h_{\theta} \left( x \right)$值范围很大，这样求误差$(h_{\theta} \left( x \right)-y)$是不太合适的，所以我们需要一个逻辑回归算法就是**S**形函数（**Sigmoid function**），公式为$g\left( z \right)=\frac{1}{1+{{e}^{-z}}}$，此时的拟合曲线为$h_\theta \left( x \right)=g\left(\theta^{T}X \right)$，即把$\theta^{T}X $的输入映射到0-1之间，作为$g\left( z \right)$的输入，这样求误差是更合理的。
 
 ![1073efb17b0d053b4f9218d4393246cc](.pic/MachineLearingNotes(week1-4)/1073efb17b0d053b4f9218d4393246cc.jpg)
 
@@ -141,7 +143,7 @@ def cost(theta, X, y, learningRate):
 
 ${{\theta }^{\left( 1 \right)}}$代表从第一层映射到第二层的权重的矩阵。
 
-${{z}^{\left( 2 \right)}}$是第2层$a^{\left( 2 \right)}$的输入矩阵，${{z}^{\left( 2 \right)}}={{\theta }^{\left( 1 \right)}}x$。$${{\theta }^{\left( 1 \right)}}是3*4维,x是4*1维,{{z}^{\left( 2 \right)}}是3*1维$$。
+${{z}^{\left( 2 \right)}}$是第2层$a^{\left( 2 \right)}$的输入矩阵，${{z}^{\left( 2 \right)}}={{\theta }^{\left( 1 \right)}}x$。$${{\theta }^{\left( 1 \right)}}$$是$$3*4$$维,$$x$$是$$4*1$$维,$${{z}^{\left( 2 \right)}}$$是$$3*1$$维。
 
 则${{a}^{\left( 2 \right)}}=g({{z}^{\left( 2 \right)}})$，计算后添加$a_{0}^{\left( 2 \right)}=1$.
 
@@ -149,7 +151,7 @@ ${{z}^{\left( 2 \right)}}$是第2层$a^{\left( 2 \right)}$的输入矩阵，${{z
 
 再令${{z}^{\left( 3 \right)}}={{\theta }^{\left( 2 \right)}}{{a}^{\left( 2 \right)}}$，则$h_\theta(x)={{a}^{\left( 3 \right)}}=g({{z}^{\left( 3 \right)}})$。
 
-这里$x是4*1维$，即1个数据4个特征，要对整个数据集进行计算，则$$X是4*m维，{{z}^{\left( 2 \right)}}={{\Theta }^{\left( 1 \right)}}\times {{X}^{T}} $$。
+这里$x是4*1维$，即1个数据4个特征，要对整个数据集进行计算，则$$X$$是$$4*m$$维，{{z}^{\left( 2 \right)}}={{\Theta }^{\left( 1 \right)}}\times {{X}^{T}} $$。
 
 ![3](.pic/MachineLearingNotes(week1-4)/3.png)
 
