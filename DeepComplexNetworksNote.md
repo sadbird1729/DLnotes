@@ -1,19 +1,3 @@
-[complex-valued neural networks (CVNNs)](#head1)
-
-- [ 1.什么是复数神经网络？](#head2)
-- [ 2.复数神经网络+量子计算？](#head3)
-- [ 3.问题？](#head4)
-- [ 4.复数可以提供哪些实数不能提供的东西？](#head5)
-- [5.论文：深度复数网络（Deep Complex Networks）](#head6)
-- [ 6.神经网络中复数函数求导](#head7)
-  - [ Holomorphism与Cauchy-Riemann方程](#head8)
-  - [ Wirtinger算子](#head9)
-  - [ 复数变量的反向传播](#head10)
-  - [ 简单测试](#head11)
-  - [ 关于复数神经网络的思考](#head12)
-  - [ 代码](#head13)
-- [ 其他问题与参考](#head14)
-
 # complex-valued neural networks (CVNNs)
 
 ## 1.什么是复数神经网络？
@@ -209,10 +193,11 @@ $$
 
 Wirtinger算子的思路是，将任何复变函数$f$，看做$f(z,z^*)$，求导数就是对$z$和共轭$z^*$分别求导：
 $$
-\begin{eqnarray}  df = \frac{\delta f}{\delta z}dz +  \frac{\delta f}{\delta z^*}dz^* \end{eqnarray}
+df = \frac{\delta f}{\delta z}dz +  \frac{\delta f}{\delta z^*}dz^*
 $$
-其中：
+![10](.pic/DeepComplexNetworksNote/10.png)
 
+其中：
 
 $$
 \begin{eqnarray} \frac{\delta f}{\delta z} = \frac{\delta f}{\delta x} -j \frac{\delta f}{\delta y} \end{eqnarray}
@@ -258,7 +243,11 @@ $$
 \frac{\partial J}{\partial y_l}=\sum\limits_{y_{l+1}}\frac{\partial J}{\partial y_{l+1}}\frac{\partial y_{l+1}}{\partial y_l}+\left(\frac{\partial J}{\partial y_{l+1}}\frac{\partial y_{l+1}}{\partial y_l^*}\right)^*.
 $$
 
+------------------------------------------Latex公式渲染出问题看这里-----------------------------------------
 
+![11](.pic/DeepComplexNetworksNote/11.png)
+
+----------------------------------------------------------over----------------------------------------------------------
 
 > 这种思路不同与论文《Deep complex networks》中求导方式，在这种思路中，权重和输入均为复数矩阵，求导时要损失函数对于整个复数求导；而在上述论文中，输入和权重必须可以均为实数（即使用双倍的实数网络代替复数网络），求导时可以分别求实部和虚部的偏导数。
 
